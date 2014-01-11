@@ -9,3 +9,7 @@ gyaim:
 		tmp/tmp1.txt 1000 \
 		> tmp/tmp2.txt
 	ruby -I~/SlimeDict/programs ~/SlimeDict/programs/connection2txt -r rklist.gyaim -n tmp/tmp2.txt > ~/Gyaim/Resources/dict.txt
+
+push:
+	git push pitecan.com:/home/masui/git/Gictionary.git
+	git push git@github.com:masui/Gictionary.git
