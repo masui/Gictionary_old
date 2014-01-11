@@ -1,0 +1,12 @@
+#!/usr/bin/ruby
+# -*- coding: utf-8 -*-
+#
+
+require 'rubygems'
+require 'gyazz'
+
+g = Gyazz.new('Gictionary')
+
+g.each { |word|
+  puts word
+}

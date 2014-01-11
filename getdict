@@ -1,0 +1,48 @@
+#!/usr/bin/ruby
+# -*- coding: utf-8 -*-
+#
+
+require 'rubygems'
+require 'gyazz'
+# require '/opt/local/lib/ruby/gems/1.8/gems/gyazz-0.0.4/lib/gyazz'
+
+def output(word,yomi,cat,nextcat)
+  yomis = yomi.split(/\s+/)
+  yomis.each { |yomi|
+    puts "#{yomi} #{word} #{cat} #{nextcat}"
+  }
+end
+
+g = Gyazz.new('Gictionary')
+
+g.each { |word|
+  text = g.get(word)
+  a = text.split
+  count = 0
+  yomi = ''
+  cat = ''
+  nextcat = ''
+  a.each { |line|
+#    puts line
+#    puts line[0]
+    if line =~ /^---/ then
+      if count > 0 then
+        output(word,yomi,cat,nextcat)
+        count = 0
+      end
+    elsif count == 0 && (line[0] == 0xe3 || line !~ /\[\[.*\]\]/) then
+      yomi = line
+      count = 1
+    elsif count == 1 then
+      cat = line
+      count = 2
+    elsif count == 2 && line !~ /^[\x00-\x7f]/ then
+      nextcat = line
+      count = 3
+    end
+  }
+  if count > 0 then
+    output(word,yomi,cat,nextcat)
+    count = 0
+  end
+}
