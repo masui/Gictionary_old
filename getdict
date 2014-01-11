@@ -2,9 +2,34 @@
 # -*- coding: utf-8 -*-
 #
 
-require 'rubygems'
 require 'gyazz'
-# require '/opt/local/lib/ruby/gems/1.8/gems/gyazz-0.0.4/lib/gyazz'
+
+module Gyazz
+  class Wiki
+    def get(path, query={})
+      res = HTTParty.get "#{@host}#{path}", :query => query, :basic_auth => @basic_auth, :timeout => 1000000
+      case res.code
+      when 200
+        return res.body
+      else
+        raise Gyazz::Error, res.body
+      end
+    end
+
+    def post(path, opts)
+      opts[:basic_auth] = @basic_auth if @basic_auth
+      opts[:timeout] = 1000000
+
+      res = HTTParty.post "#{@host}#{path}", opts
+      case res.code
+      when 200
+        return res.body
+      else
+        raise Gyazz::Error, res.body
+      end
+    end
+  end
+end
 
 def output(word,yomi,cat,nextcat)
   yomis = yomi.split(/\s+/)
@@ -13,11 +38,10 @@ def output(word,yomi,cat,nextcat)
   }
 end
 
-g = Gyazz.new('Gictionary')
+wiki = Gyazz::Wiki.new('Gictionary')
 
-g.each { |word|
-  text = g.get(word)
-  a = text.split
+wiki.pages.each { |page|
+  a = page.text.split(/\n/)
   count = 0
   yomi = ''
   cat = ''
@@ -27,7 +51,7 @@ g.each { |word|
 #    puts line[0]
     if line =~ /^---/ then
       if count > 0 then
-        output(word,yomi,cat,nextcat)
+        output(page.name,yomi,cat,nextcat)
         count = 0
       end
     elsif count == 0 && (line[0] == 0xe3 || line !~ /\[\[.*\]\]/) then
@@ -42,7 +66,7 @@ g.each { |word|
     end
   }
   if count > 0 then
-    output(word,yomi,cat,nextcat)
+    output(page.name,yomi,cat,nextcat)
     count = 0
   end
 }

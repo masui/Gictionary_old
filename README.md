@@ -1,11 +1,12 @@
 # Gictionary - オープンな変換辞書
-Gictionaryは
+Gictionaryはテキスト入力のオープンな用辞書です。
 <a href="http://Gyazz.com/Gictionary">Gyazz.com/Gictionary</a>
-上で編集できるテキスト入力用辞書です。
-本サイトのプログラムを利用して
+上のデータを本サイトのプログラムで
 <a href="http://GitHub.com/Gyaim">Gyaim</a>、
 <a href="http://GitHub.com/Slime">Slime</a>
 用の辞書に変換します。
+
+(GyaimはMac用のIME, SlimeはAndroid用のIMEです)
 
 ## 辞書の構造
 
