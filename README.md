@@ -1,4 +1,4 @@
-# Gictionary - オープンな変換辞書
+# Gictionary - オープンなテキスト入力用辞書
 Gictionaryはテキスト入力用のオープンな辞書です。
 <a href="http://Gyazz.com/Gictionary">Gyazz.com/Gictionary</a>
 上のデータを本サイトのプログラムで
@@ -6,7 +6,7 @@ Gictionaryはテキスト入力用のオープンな辞書です。
 <a href="http://GitHub.com/Slime">Slime</a>
 用の辞書に変換します。
 
-(GyaimはMac用のIME, SlimeはAndroid用のIMEです)
+- GyaimはMac用のIME, SlimeはAndroid用のIMEです
 
 ## 辞書の構造
 
