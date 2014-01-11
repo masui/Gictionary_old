@@ -1,5 +1,5 @@
 # Gictionary - オープンな変換辞書
-Gictionaryはテキスト入力のオープンな用辞書です。
+Gictionaryはテキスト入力用のオープンな辞書です。
 <a href="http://Gyazz.com/Gictionary">Gyazz.com/Gictionary</a>
 上のデータを本サイトのプログラムで
 <a href="http://GitHub.com/Gyaim">Gyaim</a>、
